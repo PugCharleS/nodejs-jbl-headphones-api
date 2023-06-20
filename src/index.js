@@ -1,5 +1,6 @@
 // app.js
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const apiRouter = require("./apiRouter");
 
@@ -8,10 +9,12 @@ const app = express();
 // Configuración de CORS
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "*",
   })
 );
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use("/api", apiRouter);
 
